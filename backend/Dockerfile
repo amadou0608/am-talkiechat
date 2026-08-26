@@ -9,7 +9,7 @@ WORKDIR /app
 # `npm install` a lancer une fois en local puis committer le lockfile) et
 # installe exactement les versions qu'il fixe — build reproductible.
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
 COPY tsconfig.json ./
 COPY src ./src
@@ -23,7 +23,7 @@ ENV NODE_ENV=production
 # Utilisateur non-root (section 13 : durcissement securite). L'image node
 # alpine fournit deja "node" (uid 1000) — inutile de recreer un utilisateur.
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm install --omit=dev && npm cache clean --force
 
 COPY --from=build /app/dist ./dist
 
