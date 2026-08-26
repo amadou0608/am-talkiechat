@@ -18,6 +18,8 @@ export type AppErrorCode =
   // Phase 8 — messages vocaux hors ligne (section 10 du cahier des charges)
   | 'INVALID_AUDIO_FILE'
   | 'VOICE_MESSAGE_NOT_FOUND'
+  | 'FILE_NOT_FOUND'
+  | 'FILE_TOO_LARGE'
   | 'FORBIDDEN'
   // Phase 11 — securite (section 13 du cahier des charges)
   | 'RATE_LIMITED'
@@ -33,4 +35,4 @@ export class AppError extends Error {
     this.code = code
     this.status = status
   }
-}
+      }
